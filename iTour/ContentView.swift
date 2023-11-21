@@ -12,30 +12,30 @@ struct ContentView: View {
     
     @Environment(\.modelContext) var modelContext
     
-    @Query var destinations: [Destination]
-    
     @State private var path = [Destination]()
+    @State private var sortOrder: SortDescriptor = SortDescriptor(\Destination.name)
     
     var body: some View {
         NavigationStack(path: $path) {
-            List {
-                ForEach(destinations) { destination in
-                    NavigationLink(value: destination) {
-                        VStack(alignment: .leading) {
-                            Text(destination.name)
-                                .font(.headline)
-
-                            Text(destination.date.formatted(date: .long, time: .shortened))
-                        }
-                    }
-                }
-                .onDelete(perform: deleteDestinations)
-            }
+            DestinationListingView(sort: sortOrder)
             .navigationTitle("iTour")
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
             .toolbar {
                 Button("Add Samples", action: addSamples)
                 Button("Add Destination", systemImage: "plus", action: addDestination) 
+                Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                    Picker("Sort", selection: $sortOrder) {
+                        Text("Name")
+                            .tag(SortDescriptor(\Destination.name))
+                        
+                        Text("Priority")
+                            .tag(SortDescriptor(\Destination.priority, order: .reverse))
+                        
+                        Text("Date")
+                            .tag(SortDescriptor(\Destination.date))
+                    }
+                    .pickerStyle(.inline)
+                }
             }
         }
     }
@@ -48,13 +48,6 @@ struct ContentView: View {
         modelContext.insert(rome)
         modelContext.insert(florence)
         modelContext.insert(naples)
-    }
-    
-    func deleteDestinations(at offsets: IndexSet) {
-        for offset in offsets {
-            let destination = destinations[offset]
-            modelContext.delete(destination)
-        }
     }
     
     func addDestination() {
