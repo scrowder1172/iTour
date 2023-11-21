@@ -66,7 +66,8 @@ struct EditDestinationView: View {
             modelContext.delete(sight)
         }
         
-        destination.sights.remove(atOffsets: offsets)
+        // no longer needed due to inverse relationship
+        //destination.sights.remove(atOffsets: offsets)
     }
     
     

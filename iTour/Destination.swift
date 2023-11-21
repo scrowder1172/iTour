@@ -19,7 +19,7 @@ final class Destination {
         date.formatted(date: .long, time: .shortened)
     }
     
-    @Relationship(deleteRule: .cascade) var sights = [Sight]()
+    @Relationship(deleteRule: .cascade, inverse: \Sight.destination) var sights = [Sight]()
     
     init(name: String = "", details: String = "", date: Date = .now, priority: Int = 2) {
         self.name = name
