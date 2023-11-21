@@ -13,12 +13,16 @@ struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     
     @State private var path = [Destination]()
+    
     @State private var sortOrder: SortDescriptor = SortDescriptor(\Destination.name)
+    
+    @State private var searchText: String = ""
     
     var body: some View {
         NavigationStack(path: $path) {
-            DestinationListingView(sort: sortOrder)
+            DestinationListingView(sort: sortOrder, searchString: searchText)
             .navigationTitle("iTour")
+            .searchable(text: $searchText)
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
             .toolbar {
                 Button("Add Samples", action: addSamples)

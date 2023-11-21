@@ -5,6 +5,7 @@
 //  Created by SCOTT CROWDER on 11/21/23.
 //
 // this view is required so that custom user sorting can be performed
+// localizedStandardContains is usually better for user-facing searches than contains because it avoids case-sensitive searching
 
 import SwiftUI
 import SwiftData
@@ -14,8 +15,17 @@ struct DestinationListingView: View {
     @Environment(\.modelContext) var modelContext
     @Query var destinations: [Destination]
     
-    init(sort: SortDescriptor<Destination>) {
-        _destinations = Query(sort: [sort])
+    init(sort: SortDescriptor<Destination>, searchString: String) {
+        _destinations = Query(
+            filter: #Predicate {
+                if searchString.isEmpty {
+                    return true
+                } else {
+                    return $0.name.localizedStandardContains(searchString)
+                }
+            }, 
+            sort: [sort]
+        )
     }
     
     var body: some View {
@@ -43,5 +53,5 @@ struct DestinationListingView: View {
 }
 
 #Preview {
-    DestinationListingView(sort: SortDescriptor(\Destination.name))
+    DestinationListingView(sort: SortDescriptor(\Destination.name), searchString: "")
 }
