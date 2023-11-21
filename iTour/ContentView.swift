@@ -25,6 +25,7 @@ struct ContentView: View {
                         Text(destination.formatedDate)
                     }
                 }
+                .onDelete(perform: deleteDestinations)
             }
             .navigationTitle("iTour")
             .toolbar {
@@ -41,6 +42,13 @@ struct ContentView: View {
         modelContext.insert(rome)
         modelContext.insert(florence)
         modelContext.insert(naples)
+    }
+    
+    func deleteDestinations(at offsets: IndexSet) {
+        for offset in offsets {
+            let destination = destinations[offset]
+            modelContext.delete(destination)
+        }
     }
 }
 
