@@ -23,9 +23,12 @@ struct ContentView: View {
     
     @State private var showFutureOnly: Bool = false
     
+    @State private var minimumDate: Date = Date.distantPast
+    let currentDate: Date = Date.now
+    
     var body: some View {
         NavigationStack(path: $path) {
-            DestinationListingView(sort: sortOrder, searchString: searchText, showFutureOnly: showFutureOnly)
+            DestinationListingView(sort: sortOrder, searchString: searchText, minimumDate: minimumDate)
             .navigationTitle("iTour")
             .searchable(text: $searchText)
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
@@ -36,33 +39,33 @@ struct ContentView: View {
                         Button("Create New Destination", action: addDestination)
                     }
                     
-                    Menu("Hide Past Destinations", systemImage: "calendar") {
-                        Button("Show All") { showFutureOnly = false}
-                        Button("Show Future Only") { showFutureOnly = true}
+                    Picker("Filter", systemImage: "calendar", selection: $minimumDate) {
+                        Text("Show all destinations")
+                            .tag(Date.distantPast)
+                        
+                        Text("Show upcoming destinations")
+                            .tag(currentDate)
                     }
                     
-                    Menu("Sort", systemImage: "arrow.up.arrow.down") {
-                        Picker("Sort", selection: $sortOrder) {
-                            Text("Name")
-                                .tag([
-                                    SortDescriptor(\Destination.name),
-                                    SortDescriptor(\Destination.date)
-                                    ])
-                            
-                            Text("Priority")
-                                .tag([
-                                    SortDescriptor(\Destination.priority, order: .reverse),
-                                    SortDescriptor(\Destination.name),
-                                    SortDescriptor(\Destination.date)
-                                    ])
-                            
-                            Text("Date")
-                                .tag([
-                                    SortDescriptor(\Destination.date),
-                                    SortDescriptor(\Destination.name)
-                                    ])
-                        }
-                        .pickerStyle(.inline)
+                    Picker("Sort", systemImage: "arrow.up.arrow.down", selection: $sortOrder) {
+                        Text("Name")
+                            .tag([
+                                SortDescriptor(\Destination.name),
+                                SortDescriptor(\Destination.date)
+                                ])
+                        
+                        Text("Priority")
+                            .tag([
+                                SortDescriptor(\Destination.priority, order: .reverse),
+                                SortDescriptor(\Destination.name),
+                                SortDescriptor(\Destination.date)
+                                ])
+                        
+                        Text("Date")
+                            .tag([
+                                SortDescriptor(\Destination.date),
+                                SortDescriptor(\Destination.name)
+                                ])
                     }
                 }
                 ToolbarItem(placement: .topBarLeading) {

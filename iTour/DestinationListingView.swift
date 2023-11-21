@@ -15,13 +15,13 @@ struct DestinationListingView: View {
     @Environment(\.modelContext) var modelContext
     @Query var destinations: [Destination]
     
-    init(sort: [SortDescriptor<Destination>], searchString: String, showFutureOnly: Bool) {
+    init(sort: [SortDescriptor<Destination>], searchString: String, minimumDate: Date) {
         _destinations = Query(
             filter: #Predicate<Destination> { destination in
                 if searchString.isEmpty {
-                    return true
+                    return destination.date > minimumDate
                 } else {
-                    return destination.name.localizedStandardContains(searchString)
+                    return destination.name.localizedStandardContains(searchString) && destination.date > minimumDate
                 }
             },
             sort: sort
@@ -53,5 +53,5 @@ struct DestinationListingView: View {
 }
 
 #Preview {
-    DestinationListingView(sort: [SortDescriptor(\Destination.name)], searchString: "", showFutureOnly: false)
+    DestinationListingView(sort: [SortDescriptor(\Destination.name)], searchString: "", minimumDate: .distantPast)
 }
