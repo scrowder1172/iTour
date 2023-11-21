@@ -14,6 +14,7 @@
 		52AAC0022B0D400A0018B469 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0012B0D400A0018B469 /* Destination.swift */; };
 		52AAC0042B0D442F0018B469 /* EditDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0032B0D442F0018B469 /* EditDestinationView.swift */; };
 		52AAC0062B0D517C0018B469 /* DestinationListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0052B0D517C0018B469 /* DestinationListingView.swift */; };
+		52AAC0082B0D573F0018B469 /* Sight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0072B0D573F0018B469 /* Sight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		52AAC0012B0D400A0018B469 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		52AAC0032B0D442F0018B469 /* EditDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDestinationView.swift; sourceTree = "<group>"; };
 		52AAC0052B0D517C0018B469 /* DestinationListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListingView.swift; sourceTree = "<group>"; };
+		52AAC0072B0D573F0018B469 /* Sight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				52AAC0012B0D400A0018B469 /* Destination.swift */,
 				52AAC0032B0D442F0018B469 /* EditDestinationView.swift */,
 				52AAC0052B0D517C0018B469 /* DestinationListingView.swift */,
+				52AAC0072B0D573F0018B469 /* Sight.swift */,
 				52AABFF72B0D3F120018B469 /* Assets.xcassets */,
 				52AABFF92B0D3F120018B469 /* Preview Content */,
 			);
@@ -149,6 +152,7 @@
 				52AABFF62B0D3F110018B469 /* ContentView.swift in Sources */,
 				52AABFF42B0D3F110018B469 /* iTourApp.swift in Sources */,
 				52AAC0022B0D400A0018B469 /* Destination.swift in Sources */,
+				52AAC0082B0D573F0018B469 /* Sight.swift in Sources */,
 				52AAC0042B0D442F0018B469 /* EditDestinationView.swift in Sources */,
 				52AAC0062B0D517C0018B469 /* DestinationListingView.swift in Sources */,
 			);
