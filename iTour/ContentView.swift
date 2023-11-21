@@ -25,29 +25,38 @@ struct ContentView: View {
             .searchable(text: $searchText)
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
             .toolbar {
-                Button("Add Samples", action: addSamples)
-                Button("Add Destination", systemImage: "plus", action: addDestination) 
-                Menu("Sort", systemImage: "arrow.up.arrow.down") {
-                    Picker("Sort", selection: $sortOrder) {
-                        Text("Name")
-                            .tag(SortDescriptor(\Destination.name))
-                        
-                        Text("Priority")
-                            .tag(SortDescriptor(\Destination.priority, order: .reverse))
-                        
-                        Text("Date")
-                            .tag(SortDescriptor(\Destination.date))
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    
+                    
+                    Menu("Add Destinations", systemImage: "plus") {
+                        Button("Add Samples", action: addSamples)
+                        Button("Create New Destination", action: addDestination)
                     }
-                    .pickerStyle(.inline)
+                    Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                        Picker("Sort", selection: $sortOrder) {
+                            Text("Name")
+                                .tag(SortDescriptor(\Destination.name))
+                            
+                            Text("Priority")
+                                .tag(SortDescriptor(\Destination.priority, order: .reverse))
+                            
+                            Text("Date")
+                                .tag(SortDescriptor(\Destination.date))
+                        }
+                        .pickerStyle(.inline)
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    EditButton()
                 }
             }
         }
     }
     
     func addSamples() {
-        let rome: Destination = Destination(name: "Rome")
-        let florence: Destination = Destination(name: "Florence")
-        let naples: Destination = Destination(name: "Naples")
+        let rome: Destination = Destination(name: "_Sample Destination1", details: "This is an example of what a destination may look like.", priority: 1)
+        let florence: Destination = Destination(name: "_Sample Destination2")
+        let naples: Destination = Destination(name: "_Sample Destination3")
         
         modelContext.insert(rome)
         modelContext.insert(florence)
