@@ -24,7 +24,11 @@ struct DestinationListingView: View {
                     return $0.name.localizedStandardContains(searchString)
                 }
             }, 
-            sort: [sort]
+            sort: [
+                sort,
+                SortDescriptor(\Destination.date),
+                SortDescriptor(\Destination.name)
+            ]
         )
     }
     
