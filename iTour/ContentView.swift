@@ -14,34 +14,50 @@ struct ContentView: View {
     
     @State private var path = [Destination]()
     
-    @State private var sortOrder: SortDescriptor = SortDescriptor(\Destination.name)
+    @State private var sortOrder: [SortDescriptor] = [SortDescriptor(\Destination.name)]
     
     @State private var searchText: String = ""
     
+    @State private var showFutureOnly: Bool = false
+    
     var body: some View {
         NavigationStack(path: $path) {
-            DestinationListingView(sort: sortOrder, searchString: searchText)
+            DestinationListingView(sort: sortOrder, searchString: searchText, showFutureOnly: showFutureOnly)
             .navigationTitle("iTour")
             .searchable(text: $searchText)
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    
-                    
                     Menu("Add Destinations", systemImage: "plus") {
                         Button("Add Samples", action: addSamples)
                         Button("Create New Destination", action: addDestination)
                     }
+                    
+                    Menu("Hide Past Destinations", systemImage: "calendar") {
+                        Button("Show All") { showFutureOnly = false}
+                        Button("Show Future Only") { showFutureOnly = true}
+                    }
+                    
                     Menu("Sort", systemImage: "arrow.up.arrow.down") {
                         Picker("Sort", selection: $sortOrder) {
                             Text("Name")
-                                .tag(SortDescriptor(\Destination.name))
+                                .tag([
+                                    SortDescriptor(\Destination.name),
+                                    SortDescriptor(\Destination.date)
+                                    ])
                             
                             Text("Priority")
-                                .tag(SortDescriptor(\Destination.priority, order: .reverse))
+                                .tag([
+                                    SortDescriptor(\Destination.priority, order: .reverse),
+                                    SortDescriptor(\Destination.name),
+                                    SortDescriptor(\Destination.date)
+                                    ])
                             
                             Text("Date")
-                                .tag(SortDescriptor(\Destination.date))
+                                .tag([
+                                    SortDescriptor(\Destination.date),
+                                    SortDescriptor(\Destination.name)
+                                    ])
                         }
                         .pickerStyle(.inline)
                     }

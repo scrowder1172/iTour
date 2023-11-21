@@ -15,20 +15,16 @@ struct DestinationListingView: View {
     @Environment(\.modelContext) var modelContext
     @Query var destinations: [Destination]
     
-    init(sort: SortDescriptor<Destination>, searchString: String) {
+    init(sort: [SortDescriptor<Destination>], searchString: String, showFutureOnly: Bool) {
         _destinations = Query(
-            filter: #Predicate {
+            filter: #Predicate<Destination> { destination in
                 if searchString.isEmpty {
                     return true
                 } else {
-                    return $0.name.localizedStandardContains(searchString)
+                    return destination.name.localizedStandardContains(searchString)
                 }
-            }, 
-            sort: [
-                sort,
-                SortDescriptor(\Destination.date),
-                SortDescriptor(\Destination.name)
-            ]
+            },
+            sort: sort
         )
     }
     
@@ -57,5 +53,5 @@ struct DestinationListingView: View {
 }
 
 #Preview {
-    DestinationListingView(sort: SortDescriptor(\Destination.name), searchString: "")
+    DestinationListingView(sort: [SortDescriptor(\Destination.name)], searchString: "", showFutureOnly: false)
 }
