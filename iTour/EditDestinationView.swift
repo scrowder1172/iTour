@@ -65,6 +65,8 @@ struct EditDestinationView: View {
             let sight = destination.sights[offset]
             modelContext.delete(sight)
         }
+        
+        destination.sights.remove(atOffsets: offsets)
     }
     
     
