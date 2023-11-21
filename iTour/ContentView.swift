@@ -58,6 +58,7 @@ struct ContentView: View {
     }
     
     func addDestination() {
+        // creates a new destination using default values that the user can edit
         let destination: Destination = Destination()
         modelContext.insert(destination)
         path = [destination]
