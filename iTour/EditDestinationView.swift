@@ -10,31 +10,26 @@ import SwiftData
 
 struct EditDestinationView: View {
     
-    @Environment(\.modelContext) var modelContext
-    @Environment(\.dismiss) var dismiss
-    
     @Bindable var destination: Destination
     
     var body: some View {
-        NavigationStack {
-            Form {
-                TextField("Name", text: $destination.name)
-                TextField("Details", text: $destination.details, axis: .vertical)
-                DatePicker("Date", selection: $destination.date)
-                
-                Section("Priority") {
-                    Picker("Priority", selection: $destination.priority) {
-                        Text("Meh").tag(1)
-                        Text("Maybe").tag(2)
-                        Text("Must").tag(3)
-                    }
-                    .pickerStyle(.segmented)
+        Form {
+            TextField("Name", text: $destination.name)
+            TextField("Details", text: $destination.details, axis: .vertical)
+            DatePicker("Date", selection: $destination.date)
+            
+            Section("Priority") {
+                Picker("Priority", selection: $destination.priority) {
+                    Text("Meh").tag(1)
+                    Text("Maybe").tag(2)
+                    Text("Must").tag(3)
                 }
-                
+                .pickerStyle(.segmented)
             }
-            .navigationTitle("Edit Destination")
-            .navigationBarTitleDisplayMode(.inline)
+            
         }
+        .navigationTitle("Edit Destination")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
