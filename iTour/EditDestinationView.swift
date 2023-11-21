@@ -4,13 +4,16 @@
 //
 //  Created by SCOTT CROWDER on 11/21/23.
 //
+//  make modelContext a private var to avoid issues with init
 
 import SwiftUI
 import SwiftData
 
 struct EditDestinationView: View {
     
-    //@Environment(\.modelContext) var modelContext
+    @Environment(\.modelContext) private var modelContext
+    
+    @State private var newSightName: String = ""
     
     @Bindable var destination: Destination
     
@@ -30,7 +33,16 @@ struct EditDestinationView: View {
             }
             
             Section("Sights") {
-               SightsView(destination: destination)
+                ForEach(destination.sights) { sight in
+                    Text(sight.name)
+                }
+                .onDelete(perform: deleteSight)
+                
+                HStack {
+                    TextField("Add a new sight in \(destination.name)", text: $newSightName)
+                    
+                    Button("Add", action: addSight)
+                }
             }
             
         }
@@ -38,7 +50,22 @@ struct EditDestinationView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
+    func addSight() {
+        guard newSightName.isEmpty == false else { return }
+        
+        withAnimation {
+            let sight: Sight = Sight(name: newSightName)
+            destination.sights.append(sight)
+            newSightName = ""
+        }
+    }
     
+    func deleteSight(at offsets: IndexSet) {
+        for offset in offsets {
+            let sight = destination.sights[offset]
+            modelContext.delete(sight)
+        }
+    }
     
     
 }
