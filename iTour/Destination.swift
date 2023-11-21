@@ -14,6 +14,9 @@ final class Destination {
     var details: String
     var date: Date
     var priority: Int
+    var formatedDate: String {
+        date.formatted(date: .long, time: .shortened)
+    }
     
     init(name: String = "", details: String = "", date: Date = .now, priority: Int = 2) {
         self.name = name
