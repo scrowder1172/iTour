@@ -13,6 +13,7 @@
 		52AABFFB2B0D3F120018B469 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AABFFA2B0D3F120018B469 /* Preview Assets.xcassets */; };
 		52AAC0022B0D400A0018B469 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0012B0D400A0018B469 /* Destination.swift */; };
 		52AAC0042B0D442F0018B469 /* EditDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0032B0D442F0018B469 /* EditDestinationView.swift */; };
+		52AAC0062B0D517C0018B469 /* DestinationListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0052B0D517C0018B469 /* DestinationListingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		52AABFFA2B0D3F120018B469 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		52AAC0012B0D400A0018B469 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		52AAC0032B0D442F0018B469 /* EditDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDestinationView.swift; sourceTree = "<group>"; };
+		52AAC0052B0D517C0018B469 /* DestinationListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				52AABFF52B0D3F110018B469 /* ContentView.swift */,
 				52AAC0012B0D400A0018B469 /* Destination.swift */,
 				52AAC0032B0D442F0018B469 /* EditDestinationView.swift */,
+				52AAC0052B0D517C0018B469 /* DestinationListingView.swift */,
 				52AABFF72B0D3F120018B469 /* Assets.xcassets */,
 				52AABFF92B0D3F120018B469 /* Preview Content */,
 			);
@@ -147,6 +150,7 @@
 				52AABFF42B0D3F110018B469 /* iTourApp.swift in Sources */,
 				52AAC0022B0D400A0018B469 /* Destination.swift in Sources */,
 				52AAC0042B0D442F0018B469 /* EditDestinationView.swift in Sources */,
+				52AAC0062B0D517C0018B469 /* DestinationListingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
