@@ -6,6 +6,7 @@
 //
 // this view is required so that custom user sorting can be performed
 // localizedStandardContains is usually better for user-facing searches than contains because it avoids case-sensitive searching
+// search in destination AND sight name
 
 import SwiftUI
 import SwiftData
@@ -17,11 +18,17 @@ struct DestinationListingView: View {
     
     init(sort: [SortDescriptor<Destination>], searchString: String, minimumDate: Date) {
         _destinations = Query(
-            filter: #Predicate<Destination> { destination in
+            filter: #Predicate<Destination> {
                 if searchString.isEmpty {
-                    return destination.date > minimumDate
+                    return $0.date > minimumDate
                 } else {
-                    return destination.name.localizedStandardContains(searchString) && destination.date > minimumDate
+                    return $0.date > minimumDate && 
+                    (
+                        $0.name.localizedStandardContains(searchString) ||
+                        $0.sights.contains { 
+                            $0.name.localizedStandardContains(searchString)
+                        }
+                    )
                 }
             },
             sort: sort
