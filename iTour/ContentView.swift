@@ -14,7 +14,10 @@ struct ContentView: View {
     
     @State private var path = [Destination]()
     
-    @State private var sortOrder: [SortDescriptor] = [SortDescriptor(\Destination.name)]
+    @State private var sortOrder: [SortDescriptor] = [
+        SortDescriptor(\Destination.name),
+        SortDescriptor(\Destination.date)
+        ]
     
     @State private var searchText: String = ""
     
