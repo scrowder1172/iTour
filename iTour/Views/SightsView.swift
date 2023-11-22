@@ -12,16 +12,17 @@ struct SightsView: View {
     
     @Query(sort: \Sight.name) var sights: [Sight]
     
+    @State private var sortOrder: [SortDescriptor] = [
+        SortDescriptor(\Sight.name)
+    ]
+    
+    @State private var searchText: String = ""
+    
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(sights) {sight in
-                    NavigationLink(value: sight.destination) {
-                        Text(sight.name)
-                    }
-                }
-            }
+            SightsListingView(sort: sortOrder, searchString: searchText)
             .navigationTitle("Sights")
+            .searchable(text: $searchText)
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
         }
     }
