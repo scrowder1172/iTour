@@ -16,6 +16,7 @@
 		52AAC0062B0D517C0018B469 /* DestinationListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0052B0D517C0018B469 /* DestinationListingView.swift */; };
 		52AAC0082B0D573F0018B469 /* Sight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0072B0D573F0018B469 /* Sight.swift */; };
 		52AAC00A2B0D98480018B469 /* SightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC0092B0D98480018B469 /* SightsView.swift */; };
+		52AAC00E2B0D9E970018B469 /* SightsListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC00D2B0D9E970018B469 /* SightsListingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		52AAC0052B0D517C0018B469 /* DestinationListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListingView.swift; sourceTree = "<group>"; };
 		52AAC0072B0D573F0018B469 /* Sight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sight.swift; sourceTree = "<group>"; };
 		52AAC0092B0D98480018B469 /* SightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightsView.swift; sourceTree = "<group>"; };
+		52AAC00D2B0D9E970018B469 /* SightsListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightsListingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +93,10 @@
 		52AAC00C2B0D98B70018B469 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				52AAC0092B0D98480018B469 /* SightsView.swift */,
 				52AAC0052B0D517C0018B469 /* DestinationListingView.swift */,
 				52AAC0032B0D442F0018B469 /* EditDestinationView.swift */,
+				52AAC0092B0D98480018B469 /* SightsView.swift */,
+				52AAC00D2B0D9E970018B469 /* SightsListingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52AABFF62B0D3F110018B469 /* ContentView.swift in Sources */,
+				52AAC00E2B0D9E970018B469 /* SightsListingView.swift in Sources */,
 				52AAC00A2B0D98480018B469 /* SightsView.swift in Sources */,
 				52AABFF42B0D3F110018B469 /* iTourApp.swift in Sources */,
 				52AAC0022B0D400A0018B469 /* Destination.swift in Sources */,
