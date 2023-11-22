@@ -39,34 +39,39 @@ struct ContentView: View {
                         Button("Create New Destination", action: addDestination)
                     }
                     
-                    Picker("Filter", systemImage: "calendar", selection: $minimumDate) {
-                        Text("Show all destinations")
-                            .tag(Date.distantPast)
-                        
-                        Text("Show upcoming destinations")
-                            .tag(currentDate)
+                    Menu("Filter", systemImage: "calendar") {
+                        Picker("Filter", selection: $minimumDate) {
+                            Text("Show all destinations")
+                                .tag(Date.distantPast)
+                            
+                            Text("Show upcoming destinations")
+                                .tag(currentDate)
+                        }
                     }
                     
-                    Picker("Sort", systemImage: "arrow.up.arrow.down", selection: $sortOrder) {
-                        Text("Name")
-                            .tag([
-                                SortDescriptor(\Destination.name),
-                                SortDescriptor(\Destination.date)
-                                ])
-                        
-                        Text("Priority")
-                            .tag([
-                                SortDescriptor(\Destination.priority, order: .reverse),
-                                SortDescriptor(\Destination.name),
-                                SortDescriptor(\Destination.date)
-                                ])
-                        
-                        Text("Date")
-                            .tag([
-                                SortDescriptor(\Destination.date),
-                                SortDescriptor(\Destination.name)
-                                ])
+                    Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                        Picker("Sort", selection: $sortOrder) {
+                            Text("Name")
+                                .tag([
+                                    SortDescriptor(\Destination.name),
+                                    SortDescriptor(\Destination.date)
+                                    ])
+                            
+                            Text("Priority")
+                                .tag([
+                                    SortDescriptor(\Destination.priority, order: .reverse),
+                                    SortDescriptor(\Destination.name),
+                                    SortDescriptor(\Destination.date)
+                                    ])
+                            
+                            Text("Date")
+                                .tag([
+                                    SortDescriptor(\Destination.date),
+                                    SortDescriptor(\Destination.name)
+                                    ])
+                        }
                     }
+                    
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     EditButton()
