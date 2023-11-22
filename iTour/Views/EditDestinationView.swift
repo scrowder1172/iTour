@@ -13,10 +13,16 @@ import PhotosUI
 struct EditDestinationView: View {
     
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     
     @State private var newSightName: String = ""
     
     @State private var photosItem: PhotosPickerItem?
+    
+    @State private var name: String = ""
+    @State private var details: String = ""
+    @State private var date: Date = Date()
+    @State private var priority: Int = 2
     
     @Bindable var destination: Destination
     
@@ -41,12 +47,12 @@ struct EditDestinationView: View {
                 PhotosPicker("Attach a photo", selection: $photosItem, matching: .images)
             }
             
-            TextField("Name", text: $destination.name)
-            TextField("Details", text: $destination.details, axis: .vertical)
-            DatePicker("Date", selection: $destination.date)
+            TextField("Name", text: $name)
+            TextField("Details", text: $details, axis: .vertical)
+            DatePicker("Date", selection: $date)
             
             Section("Priority") {
-                Picker("Priority", selection: $destination.priority) {
+                Picker("Priority", selection: $priority) {
                     Text("Meh").tag(1)
                     Text("Maybe").tag(2)
                     Text("Must").tag(3)
@@ -67,13 +73,37 @@ struct EditDestinationView: View {
                 }
             }
             
+            Section {
+                Button("Save") {
+                    destination.name = name
+                    destination.details = details
+                    destination.date = date
+                    destination.priority = priority
+                    dismiss()
+                }
+            }
+            
         }
         .navigationTitle("Edit Destination")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Cancel", systemImage: "arrowshape.backward.circle", role: .cancel) {
+                    dismiss()
+                }
+            }
+        }
         .onChange(of: photosItem) {
             Task {
                 destination.image = try? await photosItem?.loadTransferable(type: Data.self)
             }
+        }
+        .onAppear {
+            name = destination.name
+            details = destination.details
+            date = destination.date
+            priority = destination.priority
         }
     }
     
