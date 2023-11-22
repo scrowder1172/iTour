@@ -6,10 +6,24 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SightsView: View {
+    
+    @Query(sort: \Sight.name) var sights: [Sight]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List {
+                ForEach(sights) {sight in
+                    NavigationLink(value: sight.destination) {
+                        Text(sight.name)
+                    }
+                }
+            }
+            .navigationTitle("Sights")
+            .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
+        }
     }
 }
 
