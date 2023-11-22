@@ -79,45 +79,6 @@ struct EditDestinationView: View {
     
 }
 
-struct SightsView: View {
-    @Environment(\.modelContext) var modelContext
-    
-    @State private var newSightName: String = ""
-    
-    @Bindable var destination: Destination
-    
-    var body: some View {
-        
-        ForEach(destination.sights) { sight in
-            Text(sight.name)
-        }
-        .onDelete(perform: deleteSight)
-        
-        HStack {
-            TextField("Add a new sight in \(destination.name)", text: $newSightName)
-            
-            Button("Add", action: addSight)
-        }
-    }
-    
-    func addSight() {
-        guard newSightName.isEmpty == false else { return }
-        
-        withAnimation {
-            let sight: Sight = Sight(name: newSightName)
-            destination.sights.append(sight)
-            newSightName = ""
-        }
-    }
-    
-    func deleteSight(at offsets: IndexSet) {
-        for offset in offsets {
-            let sight = destination.sights[offset]
-            modelContext.delete(sight)
-        }
-    }
-}
-
 #Preview {
     do {
         let config: ModelConfiguration = ModelConfiguration(isStoredInMemoryOnly: true)

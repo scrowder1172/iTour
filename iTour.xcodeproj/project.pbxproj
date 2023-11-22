@@ -63,11 +63,8 @@
 			children = (
 				52AABFF32B0D3F110018B469 /* iTourApp.swift */,
 				52AABFF52B0D3F110018B469 /* ContentView.swift */,
-				52AAC0012B0D400A0018B469 /* Destination.swift */,
-				52AAC0032B0D442F0018B469 /* EditDestinationView.swift */,
-				52AAC0052B0D517C0018B469 /* DestinationListingView.swift */,
-				52AAC0072B0D573F0018B469 /* Sight.swift */,
-				52AAC0092B0D98480018B469 /* SightsView.swift */,
+				52AAC00B2B0D98A00018B469 /* Models */,
+				52AAC00C2B0D98B70018B469 /* Views */,
 				52AABFF72B0D3F120018B469 /* Assets.xcassets */,
 				52AABFF92B0D3F120018B469 /* Preview Content */,
 			);
@@ -80,6 +77,25 @@
 				52AABFFA2B0D3F120018B469 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		52AAC00B2B0D98A00018B469 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52AAC0012B0D400A0018B469 /* Destination.swift */,
+				52AAC0072B0D573F0018B469 /* Sight.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		52AAC00C2B0D98B70018B469 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				52AAC0092B0D98480018B469 /* SightsView.swift */,
+				52AAC0052B0D517C0018B469 /* DestinationListingView.swift */,
+				52AAC0032B0D442F0018B469 /* EditDestinationView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
