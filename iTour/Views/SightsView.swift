@@ -12,6 +12,8 @@ struct SightsView: View {
     
     @Query(sort: \Sight.name) var sights: [Sight]
     
+    @State private var path = [Sight]()
+    
     @State private var sortOrder: [SortDescriptor] = [
         SortDescriptor(\Sight.name)
     ]
@@ -20,9 +22,14 @@ struct SightsView: View {
     
     var body: some View {
         NavigationStack {
-            SightsListingView(sort: sortOrder, searchString: searchText)
+            //SightsListingView(sort: sortOrder, searchString: searchText)
+            List(sights) { sight in
+                NavigationLink(value: sight.destination) {
+                    Text(sight.name)
+                }
+            }
             .navigationTitle("Sights")
-            .searchable(text: $searchText)
+            //.searchable(text: $searchText)
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
         }
     }
